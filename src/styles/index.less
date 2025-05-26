@@ -1,0 +1,177 @@
+.app {
+  header {
+    height: 68px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; // 设置背景色，避免页面滚动时内容透出
+    .left {
+      display: flex;
+      align-items: center;
+      button {
+        width: 16px;
+        height: 15px;
+        background-color: transparent;
+        background: url(../assets/images/icon-menu.svg) no-repeat;
+        border: none;
+        font-size: 0;
+        margin-right: 17px;
+      }
+      h1 {
+        a {
+          width: 138px;
+          height: 20px;
+          display: block;
+          background: url('../assets/images/logo.svg') no-repeat;
+          font-size: 0;
+        }
+      }
+    }
+    nav {
+      .desktop-only {
+        display: none;
+      }
+      .mobile-only {
+        ul {
+          li {
+            font-weight: 800;
+            font-size: 17px;
+          }
+        }
+      }
+    }
+    .right {
+      .cart {
+        width: 22px;
+        height: 20px;
+        background: url(../assets/images/icon-cart.svg) no-repeat;
+        font-size: 0;
+        border: none;
+      }
+      .avatar {
+        width: 24px;
+        height: 24px;
+        background: url(../assets/images/image-avatar.png) no-repeat center / 100%;
+        border: none;
+        font-size: 0;
+        margin-left: 23px;
+      }
+    }
+  }
+  main {
+    padding-top: 68px;
+    .carousel {
+      position: relative;
+      width: 100%;
+      .carousel-track {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease;
+        .carousel-inner {
+          flex: 0 0 100%;
+          .slide {
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+      }
+      .carousel-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+      }
+      .next {
+        right: 16px;
+        background: #fff url(../assets/images/icon-next.svg) no-repeat center center / 25%;
+        font-size: 0;
+      }
+      .prev {
+        left: 16px;
+        background: #fff url(../assets/images/icon-previous.svg) no-repeat center center / 25%;
+        font-size: 0;
+      }
+    }
+    article {
+      padding: 24px;
+      .company {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: @Dark-grayish-blue;
+      }
+      h2 {
+        margin-top: 13px;
+        font-size: 29px;
+        line-height: 31px;
+      }
+      .goods-describe {
+        margin-top: 20px;
+        font-size: 15px;
+        color: @Dark-grayish-blue;
+      }
+    }
+    .product-price {
+      padding: 0 24px;
+      .price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .left {
+          display: flex;
+          .dis-price {
+            font-size: 28px;
+            font-weight: 700;
+          }
+          .discount {
+            background-color: #000;
+            color: #fff;
+            font-weight: 700;
+            border-radius: 7px;
+            width: 52px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            margin-left: 17px;
+            margin-top: 5px;
+          }
+        }
+        .original-price {
+          font-weight: 700;
+          color: @Dark-grayish-blue;
+          text-decoration: line-through;
+        }
+      }
+      .add-cart {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        background-color: @Orange;
+        height: 56px;
+        margin-bottom: 90px;
+        border-radius: 10px;
+        border: none;
+        font-size: 16px;
+        font-weight: 700;
+        color: @Very-dark-blue;
+        svg {
+          margin-right: 16px;
+        }
+      }
+    }
+  }
+}
