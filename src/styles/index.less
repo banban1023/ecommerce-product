@@ -10,7 +10,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #fff; // 设置背景色，避免页面滚动时内容透出
+    background-color: #fff;
     .left {
       display: flex;
       align-items: center;
@@ -68,6 +68,11 @@
           border-radius: 11px;
           color: #fff;
         }
+        .cart-box {
+          position: absolute;
+          top: 28px;
+          left: -138px;
+        }
       }
       .avatar {
         width: 24px;
@@ -78,23 +83,13 @@
         margin-left: 23px;
       }
     }
-    .cart-box {
-      .fade-enter-active,
-      .fade-leave-active {
-        transition: opacity 1s ease; /* 修改这里 */
-      }
-
-      .fade-enter,
-      .fade-leave-to {
-        opacity: 0;
-      }
-    }
   }
   main {
     padding-top: 68px;
     .carousel {
       position: relative;
       width: 100%;
+      overflow: hidden;
       .carousel-track {
         display: flex;
         width: 100%;
@@ -205,14 +200,114 @@
 
 @media (min-width: 768px) {
   .app {
+    max-width: 1112px;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     header {
+      width: 100%;
+      height: 113px;
+      border-bottom: 1px solid hsla(220, 14%, 75%, 0.5);
       .left {
-        nav {
-          .mobile-only {
-            display: none;
+        button {
+          display: none;
+        }
+      }
+      nav {
+        position: absolute;
+        left: 196px;
+        .mobile-only {
+          display: none;
+        }
+        .desktop-only {
+          display: flex;
+          font-size: 15px;
+          height: 113px;
+          li {
+            margin-left: 35px;
+            height: 100%;
+            a {
+              color: @Dark-grayish-blue;
+              line-height: 113px;
+            }
           }
-          .desktop-only {
-            display: block;
+          .active {
+            transition: all 0.15s;
+            border-bottom: 4px solid @Orange;
+            a {
+              color: #000;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .right {
+        .cart {
+          .cart-icon {
+            cursor: pointer;
+          }
+        }
+        .avatar {
+          cursor: pointer;
+        }
+      }
+    }
+    main {
+      padding: 203px 50px 0;
+      display: flex;
+      .carousel {
+        max-width: 446px;
+        height: 446px;
+        width: 100%;
+        border-radius: 10px;
+        .carousel-track {
+          width: 100%;
+          .carousel-inner {
+            .slide {
+              img {
+                height: 100%;
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+      .desktop-msg {
+        .goods-intro {
+          padding-left: 128px;
+          padding-top: 64px;
+          .company {
+            font-size: 12px;
+            font-weight: 700;
+          }
+          h2 {
+            font-size: 44px;
+            font-weight: 700;
+            line-height: 48px;
+            margin-top: 20px;
+          }
+          .goods-describe {
+            margin-top: 40px;
+            line-height: 25px;
+          }
+        }
+        .product-price {
+          padding-left: 128px;
+          .price {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            .original-price {
+              margin-top: 10px;
+            }
+          }
+          .btn {
+            display: flex;
+            .add-cart {
+              margin-bottom: 0;
+              min-width: 273px;
+            }
           }
         }
       }

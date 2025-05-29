@@ -53,4 +53,9 @@ export default {
     font-weight: 700;
   }
 }
+@media (min-width: 768px) {
+  .count-box {
+    margin: 0;
+  }
+}
 </style>

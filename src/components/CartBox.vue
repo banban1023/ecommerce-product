@@ -1,6 +1,7 @@
 <template>
-  <div class="cart-mask" v-if="value" @click.self="handleClose">
-    <div class="cart-box">
+  <div class="cart-wrapper">
+    <div class="cart-mask" v-if="value" @click.self="handleClose"></div>
+    <div class="cart-box" v-if="value">
       <h2>Cart</h2>
       <div class="cart-content">
         <p class="null" v-if="cartAll === 0">Your cart is empty.</p>
@@ -52,28 +53,26 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.cart-mask {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
+.cart-wrapper {
+  .cart-mask {
+    position: absolute;
+    left: -100vw;
+    top: -52px;
+    width: 200vw;
+    height: 90vh;
+    z-index: 15;
+  }
   .cart-box {
+    z-index: 30;
     width: 361px;
     height: 257px;
     background-color: #fff;
-    position: absolute;
-    top: 76px;
-    left: 50%;
-    transform: translateX(-50%);
     border-radius: 10px;
     h2 {
       padding: 25px;
       height: 69px;
+      top: 0;
+      left: 250px;
       border-bottom: 1px solid hsla(220, 14%, 75%, 0.4);
       font-size: 16px;
     }
@@ -130,6 +129,16 @@ export default {
           }
         }
       }
+    }
+  }
+}
+@media (min-width: 768px) {
+  .cart-wrapper {
+    .cart-box {
+      box-shadow:
+      -5px 5px 10px 0 rgba(0, 0, 0, 0.1), /* 左边阴影 */
+      5px 5px 10px 0 rgba(0, 0, 0, 0.1),  /* 右边阴影 */
+      0 5px 10px 0 rgba(0, 0, 0, 0.1);   /* 下边阴影 */;
     }
   }
 }

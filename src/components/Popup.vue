@@ -68,7 +68,7 @@ export default {
   height: 15px;
   background: none;
   border: none;
-  font-size: none;
+  font-size: 0;
   cursor: pointer;
   background: url('../assets/images/icon-close.svg') no-repeat;
 }
