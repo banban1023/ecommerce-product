@@ -50,6 +50,7 @@ export default {
     flex: 1;
     text-align: center;
     line-height: 56px;
+    font-weight: 700;
   }
 }
 </style>

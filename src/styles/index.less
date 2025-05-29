@@ -47,12 +47,27 @@
       }
     }
     .right {
+      display: flex;
       .cart {
-        width: 22px;
-        height: 20px;
-        background: url(../assets/images/icon-cart.svg) no-repeat;
-        font-size: 0;
-        border: none;
+        position: relative;
+        .cart-icon {
+          width: 22px;
+          height: 20px;
+          background: url(../assets/images/icon-cart.svg) no-repeat;
+          font-size: 0;
+          border: none;
+        }
+        .cart-num {
+          display: block;
+          background-color: @Orange;
+          position: absolute;
+          padding: 1px 8px;
+          top: -4px;
+          left: 12px;
+          font-size: 10px;
+          border-radius: 11px;
+          color: #fff;
+        }
       }
       .avatar {
         width: 24px;
@@ -179,8 +194,26 @@
         font-size: 16px;
         font-weight: 700;
         color: @Very-dark-blue;
+        box-shadow: 10px 20px 30px 10px hsla(26, 100%, 55%, 0.3);
         svg {
           margin-right: 16px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .app {
+    header {
+      .left {
+        nav {
+          .mobile-only {
+            display: none;
+          }
+          .desktop-only {
+            display: block;
+          }
         }
       }
     }

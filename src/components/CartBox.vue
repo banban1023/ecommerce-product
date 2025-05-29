@@ -3,17 +3,17 @@
     <div class="cart-box">
       <h2>Cart</h2>
       <div class="cart-content">
-        <p class="null" v-if="false">Your cart is empty.</p>
+        <p class="null" v-if="cartAll === 0">Your cart is empty.</p>
         <section class="visiable" v-else>
           <div class="goods">
             <img src="../assets/images/image-product-1-thumbnail.jpg" alt="goods picture">
             <div class="info">
               <p class="name">Fall Limited Edition Sneakers</p>
               <span class="price">$125.00</span>
-              <span class="count"> x 3</span>
-              <span class="total-price">$375.00</span>
+              <span class="count"> x {{cartAll}}</span>
+              <span class="total-price">${{totalPrice.toFixed(2)}}</span>
             </div>
-            <button aria-label="delete" type="button" class="delete">delete button</button>
+            <button aria-label="delete" type="button" class="delete" @click="deleteGoods">delete button</button>
           </div>
           <button class="checkout">Checkout</button>
         </section>
@@ -25,20 +25,27 @@
 <script>
 export default {
   name: 'CartCard',
-  data () {
-    return {
-      isNull: false
-    }
-  },
   props: {
     value: {
       type: Boolean,
+      required: true
+    },
+    cartAll: {
+      type: Number,
       required: true
     }
   },
   methods: {
     handleClose () {
       this.$emit('input', false)
+    },
+    deleteGoods () {
+      this.$emit('clearAll', 0)
+    }
+  },
+  computed: {
+    totalPrice () {
+      return this.cartAll * 125
     }
   }
 }

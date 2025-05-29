@@ -8,7 +8,7 @@
           aria-controls="nav-popup"
           aria-label="Open the navigation menu"
           @click="showPopup = true">open nav</button>
-        <h1><a href="#">1</a></h1>
+        <h1><a href="#">sneakers</a></h1>
       </div>
       <nav>
          <Popup id="nav-popup" v-model="showPopup" class="mobile-only">
@@ -29,10 +29,13 @@
         </ul>
       </nav>
       <div class="right">
-        <button type="button" class="cart" aria-label="cart button" @click="showCart = true">cart</button>
+        <div class="cart">
+          <button type="button" class="cart-icon" aria-label="cart button" @click="showCart = true">cart</button>
+          <span v-show="cartAll" class="cart-num">{{cartAll}}</span>
+        </div>
         <button type="button" class="avatar" aria-label="avatar button">avatar</button>
       </div>
-      <CartBox v-model="showCart"></CartBox>
+      <CartBox v-model="showCart" :cartAll="cartAll" @clearAll="handleClearAll"></CartBox>
     </header>
     <main>
       <section class="carousel" aria-label="banner">
@@ -100,7 +103,8 @@ export default {
         require('./assets/images/image-product-4.jpg')
       ],
       currentIndex: 0,
-      countIndex: 1
+      countIndex: 1,
+      cartAll: 0
     }
   },
   mounted () {
@@ -136,7 +140,12 @@ export default {
     },
     // 加入购物车
     addCart () {
-      console.log('点到了')
+      this.cartAll = this.cartAll + this.countIndex
+      console.log(this.cartAll)
+      this.countIndex = 1
+    },
+    handleClearAll (newValue) {
+      this.cartAll = newValue
     }
   }
 }
