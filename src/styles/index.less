@@ -203,12 +203,13 @@
 
 @media (min-width: 768px) {
   .app {
-    max-width: 1112px;
-    width: 100%;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100vw;
+    height: 100vh;
     header {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 1112px;
       width: 100%;
       height: 113px;
       border-bottom: 1px solid hsla(220, 14%, 75%, 0.5);
@@ -266,6 +267,11 @@
       }
     }
     main {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 1112px;
+      width: 100%;
       padding: 203px 50px 0;
       display: flex;
       .desktop-left {
@@ -367,6 +373,123 @@
                 cursor: pointer;
               }
             }
+          }
+        }
+      }
+    }
+    .lightbox {
+      position: fixed;
+      top: 0;
+      // left: -405px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.75);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .lightbox-content {
+        max-width: 550px;
+        width: 100%;
+        position: relative;
+        .close-btn {
+          position: absolute;
+          top: -40px;
+          right: 0;
+          background: none;
+          border: none;
+          cursor: pointer;
+          svg {
+            width: 20px;
+            height: 20px;
+            path {
+              fill: white;
+              transition: fill 0.3s;
+            }
+          }
+          &:hover svg path {
+            fill: hsl(26, 100%, 55%);
+          }
+        }
+        .lightbox-main {
+          position: relative;
+          overflow: hidden;
+          border-radius: 15px;
+          .lightbox-track {
+            display: flex;
+            transition: transform 0.3s ease;
+            .lightbox-slide {
+              min-width: 100%;
+              img {
+                width: 100%;
+                height: auto;
+                display: block;
+              }
+            }
+          }
+        }
+        .lightbox-prev,
+          .lightbox-next {
+            position: absolute;
+            top: 248px;
+            width: 58px;
+            height: 58px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            svg {
+              width: 12px;
+            }
+          }
+          .lightbox-prev {
+            left: -20px;
+          }
+          .lightbox-next {
+            right: -20px;
+          }
+        .lightbox-thumbnails {
+          display: flex;
+          justify-content: space-between;
+          width: 446px;
+          margin: 30px auto;
+          button {
+            width: 89px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            &::after {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: rgba(255, 255, 255, 0.5);
+              opacity: 0;
+              transition: opacity 0.3s;
+            }
+            &.active::after,
+            &:hover::after {
+              opacity: 1;
+            }
+            img {
+              width: 100%;
+              height: auto;
+              display: block;
+            }
+          }
+          .active {
+            border: 2px solid @Orange;
           }
         }
       }

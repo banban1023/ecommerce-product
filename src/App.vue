@@ -41,7 +41,7 @@
             class="carousel-track"
             :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
           >
-            <div class="carousel-inner" v-for="(item, index) in bannerList" :key="index">
+            <div class="carousel-inner" @click="openLightbox(index)" v-for="(item, index) in bannerList" :key="index">
               <figure class="slide">
                 <img :src="item" alt="Men's sports shoe pictures" />
               </figure>
@@ -91,6 +91,49 @@
         </section>
       </section>
     </main>
+    <div class="lightbox" v-if="showLightbox" @click.self="closeLightbox">
+        <div class="lightbox-content">
+          <button class="close-btn" @click="closeLightbox" aria-label="Close lightbox">
+            <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg">
+              <path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="#fff" fill-rule="evenodd"/>
+            </svg>
+          </button>
+          <div class="lightbox-main">
+            <div
+              class="lightbox-track"
+              :style="{ transform: `translateX(-${lightboxIndex * 100}%)` }"
+            >
+              <div
+                class="lightbox-slide"
+                v-for="(item, index) in bannerList"
+                :key="index"
+              >
+                <img :src="item" alt="Men's sports shoe pictures" />
+              </div>
+            </div>
+          </div>
+          <button class="lightbox-prev" @click.stop="lightboxPrev" aria-label="Previous image">
+              <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 1 3 9l8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd"/>
+              </svg>
+            </button>
+            <button class="lightbox-next" @click.stop="lightboxNext" aria-label="Next image">
+              <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+                <path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd"/>
+              </svg>
+            </button>
+          <div class="lightbox-thumbnails">
+            <button
+              v-for="(item, index) in bannerList"
+              :key="index"
+              :class="{active: lightboxIndex === index}"
+              @click.stop="lightboxIndex = index"
+            >
+              <img :src="item" alt="Thumbnail">
+            </button>
+          </div>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -107,6 +150,8 @@ export default {
     return {
       showCart: false,
       showPopup: false,
+      showLightbox: false, //
+      lightboxIndex: 0, //
       navItems: ['Collections', 'Men', 'Women', 'About', 'Contact'],
       bannerList: [
         require('./assets/images/image-product-1.jpg'),
@@ -138,6 +183,28 @@ export default {
     this.stopAutoPlay()
   },
   methods: {
+    // 打开大图预览
+    openLightbox (index) {
+      this.lightboxIndex = index
+      this.showLightbox = true
+      document.body.style.overflow = 'hidden' // 防止背景滚动
+    },
+
+    // 关闭大图预览
+    closeLightbox () {
+      this.showLightbox = false
+      document.body.style.overflow = ''
+    },
+
+    // 大图预览上一张
+    lightboxPrev () {
+      this.lightboxIndex = (this.lightboxIndex - 1 + this.bannerList.length) % this.bannerList.length
+    },
+
+    // 大图预览下一张
+    lightboxNext () {
+      this.lightboxIndex = (this.lightboxIndex + 1) % this.bannerList.length
+    },
     switchImage (index) {
       this.currentIndex = index
       this.currentimgIndex = index
