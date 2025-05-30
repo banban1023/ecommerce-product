@@ -56,6 +56,10 @@ export default {
 @media (min-width: 768px) {
   .count-box {
     margin: 0;
+    max-width: 157px;
+    button {
+      cursor: pointer;
+    }
   }
 }
 </style>

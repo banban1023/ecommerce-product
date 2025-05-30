@@ -35,20 +35,30 @@
       </div>
     </header>
     <main>
-      <section class="carousel" aria-label="banner">
-        <div
-          class="carousel-track"
-          :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
-        >
-          <div class="carousel-inner" v-for="(item, index) in bannerList" :key="index">
-            <figure class="slide">
-              <img :src="item" alt="Men's sports shoe pictures" />
-            </figure>
+      <div class="desktop-left">
+        <section class="carousel" aria-label="banner">
+          <div
+            class="carousel-track"
+            :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
+          >
+            <div class="carousel-inner" v-for="(item, index) in bannerList" :key="index">
+              <figure class="slide">
+                <img :src="item" alt="Men's sports shoe pictures" />
+              </figure>
+            </div>
           </div>
-        </div>
-        <button class="carousel-btn prev" aria-label="previous" @click="prev"></button>
-        <button class="carousel-btn next" aria-label="next" @click="next"></button>
-      </section>
+          <button class="carousel-btn prev" aria-label="previous" @click="prev"></button>
+          <button class="carousel-btn next" aria-label="next" @click="next"></button>
+        </section>
+        <section class="small-carousel">
+          <button class="small-goods" v-for="(item, index) in bannerList" :key="index"
+            :class="{active: currentIndex === index}"
+            @click="switchImage(index)"
+          >
+            <img :src="item" alt="goods-img">
+          </button>
+        </section>
+      </div>
       <section class="desktop-msg">
         <article class="goods-intro" aria-labelledby="goods-name">
           <p class="company">SNEAKER COMPANY</p>
@@ -107,6 +117,7 @@ export default {
       currentIndex: 0,
       countIndex: 1,
       cartAll: 0,
+      currentimgIndex: 0,
       currentNavIndex: null
     }
   },
@@ -127,11 +138,17 @@ export default {
     this.stopAutoPlay()
   },
   methods: {
+    switchImage (index) {
+      this.currentIndex = index
+      this.currentimgIndex = index
+    },
     next () {
       this.currentIndex = (this.currentIndex + 1) % this.bannerList.length
+      this.currentimgIndex = this.currentIndex
     },
     prev () {
       this.currentIndex = (this.currentIndex - 1 + this.bannerList.length) % this.bannerList.length
+      this.currentimgIndex = this.currentIndex
     },
     startAutoPlay () {
       this.timer = setInterval(() => {

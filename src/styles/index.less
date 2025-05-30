@@ -126,6 +126,9 @@
         font-size: 0;
       }
     }
+    .small-carousel {
+      display: none;
+    }
     article {
       padding: 24px;
       .company {
@@ -209,6 +212,7 @@
       width: 100%;
       height: 113px;
       border-bottom: 1px solid hsla(220, 14%, 75%, 0.5);
+      padding: 0;
       .left {
         button {
           display: none;
@@ -244,31 +248,75 @@
       }
       .right {
         .cart {
+          align-self: center;
           .cart-icon {
             cursor: pointer;
           }
         }
         .avatar {
+          width: 52px;
+          height: 52px;
+          margin-left: 47px;
           cursor: pointer;
+          &:hover {
+            border: 2px solid @Orange;
+            border-radius: 50%;
+          }
         }
       }
     }
     main {
       padding: 203px 50px 0;
       display: flex;
-      .carousel {
+      .desktop-left {
         max-width: 446px;
         height: 446px;
         width: 100%;
-        border-radius: 10px;
-        .carousel-track {
+        .carousel {
+          max-width: 446px;
+          height: 446px;
           width: 100%;
-          .carousel-inner {
-            .slide {
-              img {
-                height: 100%;
-                width: 100%;
+          border-radius: 10px;
+          .carousel-track {
+            width: 100%;
+            .carousel-inner {
+              .slide {
+                img {
+                  height: 100%;
+                  width: 100%;
+                }
               }
+            }
+          }
+          .carousel-btn {
+            display: none;
+          }
+        }
+        .small-carousel {
+          margin-top: 33px;
+          display: flex;
+          width: 446px;
+          height: 89px;
+          justify-content: space-between;
+          .small-goods {
+            width: 89px;
+            height: 89px;
+            border-radius: 8px;
+            border: none;
+            img {
+              width: 100%;
+              border-radius: 8px;
+              cursor: pointer;
+              &:hover {
+                opacity: 0.3;
+              }
+            }
+          }
+          .active {
+            border: 2px solid @Orange;
+            border-radius: 9px;
+            img {
+              opacity: 0.3;
             }
           }
         }
@@ -277,6 +325,7 @@
         .goods-intro {
           padding-left: 128px;
           padding-top: 64px;
+          padding-right: 0;
           .company {
             font-size: 12px;
             font-weight: 700;
@@ -290,10 +339,12 @@
           .goods-describe {
             margin-top: 40px;
             line-height: 25px;
+            font-size: 16px;
           }
         }
         .product-price {
           padding-left: 128px;
+          padding-right: 0;
           .price {
             display: flex;
             flex-direction: column;
@@ -304,9 +355,17 @@
           }
           .btn {
             display: flex;
+            margin-top: 35px;
             .add-cart {
               margin-bottom: 0;
-              min-width: 273px;
+              max-width: 273px;
+              width: 100%;
+              box-shadow: none;
+              margin-left: 17px;
+              &:hover {
+                background-color: rgb(255, 172, 106);
+                cursor: pointer;
+              }
             }
           }
         }

@@ -136,9 +136,21 @@ export default {
   .cart-wrapper {
     .cart-box {
       box-shadow:
-      -5px 5px 10px 0 rgba(0, 0, 0, 0.1), /* 左边阴影 */
-      5px 5px 10px 0 rgba(0, 0, 0, 0.1),  /* 右边阴影 */
-      0 5px 10px 0 rgba(0, 0, 0, 0.1);   /* 下边阴影 */;
+      -5px 5px 10px 0 rgba(0, 0, 0, 0.1),
+      5px 5px 10px 0 rgba(0, 0, 0, 0.1),
+      0 5px 10px 0 rgba(0, 0, 0, 0.1);
+      .cart-content {
+        .visiable {
+          .checkout {
+            cursor: pointer;
+          }
+          .goods {
+            .delete {
+              cursor: pointer;
+            }
+          }
+        }
+      }
     }
   }
 }
